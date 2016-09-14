@@ -149,7 +149,6 @@ app_angular.controller('sessionController',['bootbox','Conexion','$scope','$loca
                         })
                         .then(
                             function success(data1) {
-                                debugger
                                 angular.forEach($scope.detalle_pedidos_detalle,function(extension){
                                     if (extension.pedidoDetalle.toString().includes(data1.data.rowid_inicial)) {
 
@@ -163,7 +162,6 @@ app_angular.controller('sessionController',['bootbox','Conexion','$scope','$loca
                                         })
                                         .then(
                                             function success(data2) {
-                                                debugger
                                             }, 
                                             function error(err) {Mensajes('Error Enviando Ext2','error','');$scope.errorAlerta.bandera=1;return }
                                         ); 
@@ -177,9 +175,9 @@ app_angular.controller('sessionController',['bootbox','Conexion','$scope','$loca
                 if ($scope.errorAlerta.bandera==0) {
                     CRUD.Updatedynamic("update t_pedidos set estado_sincronizacion=1  ,sincronizado='true' where rowid='"+data.data.rowidInicial+"'")
                 }
-                Mensajes('Pedido Registrado ' +data.data.rowid ,'success','')
+                Mensajes('Pedido Registrado ' +data.data.rowidInicial ,'success','')
             }, 
-            function error(err) {debugger}
+            function error(err) {}
         ); 
     }
 
