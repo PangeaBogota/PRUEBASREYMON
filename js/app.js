@@ -122,7 +122,6 @@ app_angular.controller('sessionController',['bootbox','Conexion','$scope','$loca
                         //        elem.contadorDetalles++;    
                         //    }
                         //}
-                        debugger
                         $scope.url='http://demos.pedidosonline.co/Mobile/reymon?usuario='+$scope.usuario+'&entidad=PEDIDOS&codigo_empresa=' + $scope.codigoempresa + '&datos=' + JSON.stringify(elem);
                         
                         $scope.Request($scope.url);            
@@ -179,7 +178,7 @@ app_angular.controller('sessionController',['bootbox','Conexion','$scope','$loca
                     CRUD.Updatedynamic("update t_pedidos set estado_sincronizacion=1  ,sincronizado='true' where rowid='"+data.data.rowidInicial+"'")
                 }
             }, 
-            function error(err) {debugger;Mensajes('Error al Subir El Pedido','error','');$scope.errorAlerta.bandera=1;return }
+            function error(err) {}
         ); 
     }
 

@@ -809,9 +809,11 @@ app_angular.controller("pedidoController",['Conexion','$scope','$location','$htt
 	}
 
 	$scope.finalizarPedido=function(destino){
+
 		if($scope.itemsAgregadosPedido.length==0)
 		{
 			Mensajes('Debe Seleccionar al menos un item de la lista','error','');
+			$('#btnGuardar').removeAttr('disabled');
 			return
 		}
 		$scope.guardarCabezera(destino);
@@ -1147,30 +1149,36 @@ app_angular.controller("pedidoController",['Conexion','$scope','$location','$htt
 	}
 	$scope.validacionInsert=function(accion)
 	{
-
+		$('#btnGuardar').attr('disabled','disabled');
 		if ($scope.pedidos.rowid_cliente_facturacion =='' || $scope.pedidos.rowid_cliente_facturacion==undefined) {
 			Mensajes("Verifique Que Todos lo campos esten Llenos","error","")
+			$('#btnGuardar').removeAttr('disabled');
 			return
 		}
 		if ($scope.pedidos.rowid_cliente_despacho =='' || $scope.pedidos.rowid_cliente_despacho==undefined) {
 			Mensajes("Verifique Que Todos lo campos esten Llenos","error","")
+			$('#btnGuardar').removeAttr('disabled');
 			return
 		}
 		if ($scope.pedidos.rowid_lista_precios =='' || $scope.pedidos.rowid_lista_precios==undefined) {
 			Mensajes("Verifique Que Todos lo campos esten Llenos","error","")
+			$('#btnGuardar').removeAttr('disabled');
 			return
 		}
 		if ($scope.pedidos.fecha_solicitud =='' || $scope.pedidos.fecha_solicitud==undefined) {
 			Mensajes("Verifique Que Todos lo campos esten Llenos","error","")
+			$('#btnGuardar').removeAttr('disabled');
 			return
 		}
 		if ($scope.pedidos.fecha_entrega =='' || $scope.pedidos.fecha_entrega==undefined) {
 			Mensajes("Verifique Que Todos lo campos esten Llenos","error","")
+			$('#btnGuardar').removeAttr('disabled');
 			return
 		}
 		if($scope.itemsAgregadosPedido.length==0)
 		{
 			Mensajes('Debe Seleccionar al menos un item de la lista','error','');
+			$('#btnGuardar').removeAttr('disabled');
 			return
 		}
 		if (accion=='temporal') {
