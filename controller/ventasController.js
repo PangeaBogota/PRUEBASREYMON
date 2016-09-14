@@ -1155,6 +1155,11 @@ app_angular.controller("pedidoController",['Conexion','$scope','$location','$htt
 			$('#btnGuardar').removeAttr('disabled');
 			return
 		}
+		if ($scope.puntoEnvio.rowid==undefined) {
+			Mensajes("Verifique Que Todos lo campos esten Llenos","error","")
+			$('#btnGuardar').removeAttr('disabled');
+			return
+		}
 		if ($scope.pedidos.rowid_cliente_despacho =='' || $scope.pedidos.rowid_cliente_despacho==undefined) {
 			Mensajes("Verifique Que Todos lo campos esten Llenos","error","")
 			$('#btnGuardar').removeAttr('disabled');
