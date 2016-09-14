@@ -176,7 +176,7 @@ app_angular.controller('sessionController',['bootbox','Conexion','$scope','$loca
                 });
                 console.log('termino pedido')
                 if ($scope.errorAlerta.bandera==0) {
-                    CRUD.Updatedynamic("update t_pedidos set estado_sincronizacion=1  where rowid='"+data.data.rowidInicial+"'")
+                    CRUD.Updatedynamic("update t_pedidos set estado_sincronizacion=1  ,sincronizado='true' where rowid='"+data.data.rowidInicial+"'")
                 }
             }, 
             function error(err) {debugger;Mensajes('Error al Subir El Pedido','error','');$scope.errorAlerta.bandera=1;return }

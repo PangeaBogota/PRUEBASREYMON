@@ -313,7 +313,7 @@
                                 </span>
                             </button>
                         </span>
-                        <input type="number" class="form-control text-center" ng-model="tallas.cantidad"  ng-change="onChangeCantidad(tallas.talla,tallas.stock)"   style="min-width:50px">
+                        <input type="number" class="form-control text-center" ng-model="tallas.cantidad"  ng-change="onChangeCantidad(tallas.talla,tallas.stock)"   style="min-width:50px" min="0" />
                         <span class="input-group-btn" ng-click="cantidadTalla(tallas.talla,'suma',tallas.stock)">
                             <button type="button" class="btn btn-default">
                                 <span class="glyphicon glyphicon-plus">
@@ -574,7 +574,7 @@
                                                         </span>
                                                     </button>
                                                 </span>
-                                                <input type="number" ng-model="extension.cantidad" ng-change="onChangeCantidadDetalle2(extension.extencionDetalle2ID,extension.stock,extension.cantidadextension1)" class="form-control text-center" ng-readonly="readonly" />
+                                                <input type="number" ng-model="extension.cantidad" ng-change="onChangeCantidadDetalle2(extension.extencionDetalle2ID,extension.stock,extension.cantidadextension1)" class="form-control text-center" ng-readonly="readonly" min="0" />
                                                 <span class="input-group-btn"  ng-click="adicionarCantidadDetalle2(extension.extencionDetalle2ID,'sumar',extension.stock,extension.cantidadextension1)">
                                                     <button type="button" class="btn btn-default">
                                                         <span class="glyphicon glyphicon-plus">
