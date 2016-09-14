@@ -74,6 +74,7 @@ app_angular.controller('sessionController',['bootbox','Conexion','$scope','$loca
         $scope.detalle_pedidos=[];
         $scope.detalle_pedidos_detalle=[];
         $scope.pedido=[];
+        $scope.errorAlerta.bandera=0;
         CRUD.select('select *from crm_actividades where sincronizado="false"',function(elem){$scope.actividades.push(elem)})
         CRUD.select('select *from t_pedidos where sincronizado="false"',function(elem){$scope.pedidos.push(elem)})
         CRUD.select('select *from t_pedidos_detalle where rowid_pedido in (select rowid from t_pedidos where sincronizado="false")',function(elem){$scope.detalle_pedidos.push(elem)})
@@ -116,12 +117,6 @@ app_angular.controller('sessionController',['bootbox','Conexion','$scope','$loca
                 //PEDIDOS
                 if (STEP_SUBIRDATOS[i]==ENTIDAD_PEDIDOS && ALMACENARDATOS[i].length!=0) {
                     CRUD.select('select * from  t_pedidos where sincronizado="false"  and estado_sincronizacion=0',function(elem){
-                        //elem.contadorDetalles=0;
-                        //for (var i = 0;i<$scope.detalle_pedidos.length;i++) {
-                         //   if ($scope.detalle_pedidos[i].rowid_pedido==elem.rowid) {
-                        //        elem.contadorDetalles++;    
-                        //    }
-                        //}
                         $scope.url='http://demos.pedidosonline.co/Mobile/reymon?usuario='+$scope.usuario+'&entidad=PEDIDOS&codigo_empresa=' + $scope.codigoempresa + '&datos=' + JSON.stringify(elem);
                         
                         $scope.Request($scope.url);            
@@ -132,9 +127,11 @@ app_angular.controller('sessionController',['bootbox','Conexion','$scope','$loca
         },3000)
     }
     $scope.Request=function(url){
+        $scope.errorAlerta.bandera=0;
         $http({
           method: 'GET',
-          url: url
+          url: url,
+          timeout : 3000,
         })
         .then(
             function success(data) {
@@ -148,6 +145,7 @@ app_angular.controller('sessionController',['bootbox','Conexion','$scope','$loca
                         $http({
                           method: 'GET',
                           url: 'http://demos.pedidosonline.co/Mobile/reymon?usuario='+$scope.usuario+'&entidad=PEDIDO_DETALLE_REYMON&codigo_empresa=' + $scope.codigoempresa + '&datos=' + JSON.stringify($scope.detalle),
+                          timeout : 3000,
                         })
                         .then(
                             function success(data1) {
@@ -160,6 +158,7 @@ app_angular.controller('sessionController',['bootbox','Conexion','$scope','$loca
                                         $http({
                                           method: 'GET',
                                           url: 'http://demos.pedidosonline.co/Mobile/reymon?usuario='+$scope.usuario+'&entidad=T_PEDIDOS_DETALLE_DETALLE&codigo_empresa=' + $scope.codigoempresa + '&datos=' + JSON.stringify($scope.detalledetalle),
+                                          timeout : 3000,
                                         })
                                         .then(
                                             function success(data2) {
@@ -173,7 +172,6 @@ app_angular.controller('sessionController',['bootbox','Conexion','$scope','$loca
                         ); 
                     }
                 });
-                console.log('termino pedido')
                 if ($scope.errorAlerta.bandera==0) {
                     CRUD.Updatedynamic("update t_pedidos set estado_sincronizacion=1  ,sincronizado='true' where rowid='"+data.data.rowidInicial+"'")
                 }
@@ -190,6 +188,7 @@ app_angular.controller('sessionController',['bootbox','Conexion','$scope','$loca
             if ($scope.errorAlerta.bandera==1) {
                 Mensajes('Error al Sincronizar, Por favor revise que su conexion sea estable','error','');
                 ProcesadoHiden();
+                $route.reload();
                 return
             }
             CRUD.Updatedynamic("delete from crm_actividades");
