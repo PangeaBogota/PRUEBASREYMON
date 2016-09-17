@@ -99,6 +99,208 @@ app_angular.service('Factory', function ($webSql) {
         }
     })
 
+    db.createTable('s_planos_pedidos',{
+        "rowid": {
+            "type": "INTEGER",
+            "null": "NOT NULL",
+            "primary": true,
+            "auto_increment": true 
+        },
+        "indicador": {
+            "type": "TEXT",
+            "null": "NULL"
+        },
+        "rowid_empresa": {
+            "type": "INTEGER",
+            "null": "NULL"
+        },
+        "rowid_cia": {
+            "type": "INTEGER",
+            "null": "NULL"
+        },
+        "codigo_usuario": {
+            "type": "TEXT",
+            "null": "NULL"
+        },
+        "usuariocreacion": {
+            "type": "TEXT",
+            "null": "NULL"
+        },
+        "fechacreacion": {
+            "type": "INTEGER",
+            "null": "NULL"
+        },
+        "e_rowid": {
+            "type": "INTEGER",
+            "null": "NULL"
+        },
+        "e_rowid_cliente_facturacion": {
+            "type": "INTEGER",
+            "null": "NULL"
+        },
+        "e_rowid_cliente_despacho": {
+            "type": "INTEGER",
+            "null": "NULL"
+        },
+        "e_rowid_cliente_precios": {
+            "type": "INTEGER",
+            "null": "NULL"
+        },
+        "e_id_punto_envio": {
+            "type": "INTEGER",
+            "null": "NULL"
+        },
+        "e_pedido_fecha_pedido": {
+            "type": "INTEGER",
+            "null": "NULL"
+        },
+        "e_fecha_entrega": {
+            "type": "TEXT",
+            "null": "NULL"
+        },
+        "e_valor_base": {
+            "type": "INTEGER",
+            "null": "NULL"
+        },
+        "e_valor_descuento": {
+            "type": "INTEGER",
+            "null": "NULL"
+        },
+        "e_valor_impuesto": {
+            "type": "INTEGER",
+            "null": "NULL"
+        },
+        "e_valor_total": {
+            "type": "INTEGER",
+            "null": "NULL"
+        },
+        "e_id_estado": {
+            "type": "INTEGER",
+            "null": "NULL"
+        },
+        "e_ind_estado_erp": {
+            "type": "INTEGER",
+            "null": "NULL"
+        },
+        "e_valor_facturado": {
+            "type": "TEXT",
+            "null": "NULL"
+        },
+        "e_fecha_solicitud": {
+            "type": "TEXT",
+            "null": "NULL"
+        },
+        "e_orden_compra": {
+            "type": "TEXT",
+            "null": "NULL"
+        },
+        "e_modulo_creacion": {
+            "type": "TEXT",
+            "null": "NULL"
+        },
+        "e_observaciones": {
+            "type": "TEXT",
+            "null": "NULL"
+        },
+        "d_rowid": {
+            "type": "INTEGER",
+            "null": "NULL"
+        },
+        "d_rowid_pedido": {
+            "type": "INTEGER",
+            "null": "NULL"
+        },
+        "d_rowid_item": {
+            "type": "INTEGER",
+            "null": "NULL"
+        },
+        "d_linea_descripcion": {
+            "type": "TEXT",
+            "null": "NULL"
+        },
+        "d_id_unidad": {
+            "type": "TEXT",
+            "null": "NULL"
+        },
+        "d_cantidad": {
+            "type": "INTEGER",
+            "null": "NULL"
+        },
+        "d_factor": {
+            "type": "INTEGER",
+            "null": "NULL"
+        },
+        "d_cantidad_base": {
+            "type": "INTEGER",
+            "null": "NULL"
+        },
+        "d_stock": {
+            "type": "INTEGER",
+            "null": "NULL"
+        },
+        "d_porcen_descuento": {
+            "type": "INTEGER",
+            "null": "NULL"
+        },
+        "d_valor_base": {
+            "type": "INTEGER",
+            "null": "NULL"
+        },
+        "d_valor_impuesto": {
+            "type": "INTEGER",
+            "null": "NULL"
+        },
+        "d_valor_total_linea": {
+            "type": "INTEGER",
+            "null": "NULL"
+        },
+        "d_item_ext1": {
+            "type": "TEXT",
+            "null": "NULL"
+        },
+        "d_rowid_item_ext": {
+            "type": "INTEGER",
+            "null": "NULL"
+        },
+        "d_empaque": {
+            "type": "TEXT",
+            "null": "NULL"
+        },
+        "d_observaciones": {
+            "type": "TEXT",
+            "null": "NULL"
+        },
+        "d_rowid_bodega": {
+            "type": "INTEGER",
+            "null": "NULL"
+        },
+        "s_rowid": {
+            "type": "INTEGER",
+            "null": "NULL"
+        },
+        "s_rowid_detalle": {
+            "type": "INTEGER",
+            "null": "NULL"
+        },
+        "s_cantidad": {
+            "type": "INTEGER",
+            "null": "NULL"
+        },
+        "s_itemExtencion2Detalle": {
+            "type": "TEXT",
+            "null": "NULL"
+        },
+        "estado": {
+            "type": "INTEGER",
+            "null": "NULL"
+        },
+        "ultimo_registro": {
+            "type": "INTEGER",
+            "null": "NULL"
+        }
+
+    })
+
     db.createTable('t_pedidos_detalle_detalle',{
         "rowid": {
             "type": "INTEGER",
@@ -115,7 +317,7 @@ app_angular.service('Factory', function ($webSql) {
             "null": "NULL"
         },
         "cantidad": {
-            "type": "text",
+            "type": "INTEGER",
             "null": "NULL"
         },
         "fechacreacion": {
@@ -133,7 +335,16 @@ app_angular.service('Factory', function ($webSql) {
         "fechamodificacion": {
             "type": "text",
             "null": "NULL"
+        },
+        "estado": {
+            "type": "integer",
+            "null": "NULL"
+        },
+        "indicador": {
+            "type": "integer",
+            "null": "NULL"
         }
+
     })
     db.createTable('s_canales_usuario',{
         "rowid": {
@@ -658,6 +869,10 @@ app_angular.service('Factory', function ($webSql) {
         "estado_sincronizacion": {
             "type": "INTEGER",
             "null": "NULL"
+        },
+        "key_user": {
+            "type": "INTEGER",
+            "null": "NULL"
         }
     });
 
@@ -1137,6 +1352,14 @@ app_angular.service('Factory', function ($webSql) {
         },
         "empaque": {
             "type": "text",
+            "null": "NULL"
+        },
+        "estado": {
+            "type": "integer",
+            "null": "NULL"
+        },
+        "indicador": {
+            "type": "integer",
             "null": "NULL"
         }
         

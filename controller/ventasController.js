@@ -1076,6 +1076,8 @@ app_angular.controller("pedidoController",['Conexion','$scope','$location','$htt
 				$scope.detalle.usuariocreacion=$scope.sessiondate.nombre_usuario;
 				$scope.detalle.empaque=value.empaque;
 				$scope.detalle.item_ext1=detalle.talla;
+				$scope.detalle.estado=0;
+				$scope.detalle.indicador=$scope.sessiondate.key;
 				$scope.detalle.observaciones=value.observaciones;
 				$scope.detalle.fechacreacion=$scope.CurrentDate();
 				CRUD.insert($scope.tablaMovimientoDestino,$scope.detalle);
@@ -1084,7 +1086,8 @@ app_angular.controller("pedidoController",['Conexion','$scope','$location','$htt
 					if (detalle.detalle2[i].cantidad>0) {
 						$scope.extensionInsert=[];
 						$scope.extensionInsert.cantidad=detalle.detalle2[i].cantidad;
-						debugger
+						$scope.extensionInsert.estado=0;
+						$scope.extensionInsert.indicador=$scope.sessiondate.key;
 						$scope.extensionInsert.pedidoDetalle=parseInt(Detalle.rowid)
 						$scope.extensionInsert.itemExtension2Detalle=detalle.detalle2[i].extencionDetalle2ID
 						$scope.extensionInsert.usuariocreacion=$scope.sessiondate.nombre_usuario;
@@ -1144,6 +1147,7 @@ app_angular.controller("pedidoController",['Conexion','$scope','$location','$htt
 		$scope.pedidos.id_punto_envio=$scope.puntoEnvio.rowid
 		$scope.pedidos.sincronizado='false';
 		$scope.pedidos.estado_sincronizacion=0;
+		$scope.pedidos.key_user=$scope.sessiondate.key;
 		
 		CRUD.insert($scope.tablaDestino,$scope.pedidos)
 	}
